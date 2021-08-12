@@ -214,23 +214,24 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 height: 24,
               ),
-              MaterialButton(
-                onPressed: () {
-                  // Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (_) => BlocProvider.value(
-                  //       value: BlocProvider.of<CounterCubit>(context),
-                  //       child: SecondScreen(
-                  //             title: 'Second Screen',
-                  //             color: Colors.redAccent,
-                  //           ),
-                  //     )));
-                  Navigator.of(context)
-                      .pushNamed('/second', arguments: homeScreenKey);
-                },
-                child: Text("Go to Second Screen",
-                    style: TextStyle(color: Colors.white)),
-                color: Colors.redAccent,
-              ),
+              Builder(
+                  builder: (materialButtonContext) => MaterialButton(
+                        onPressed: () {
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (_) => BlocProvider.value(
+                          //       value: BlocProvider.of<CounterCubit>(context),
+                          //       child: SecondScreen(
+                          //             title: 'Second Screen',
+                          //             color: Colors.redAccent,
+                          //           ),
+                          //     )));
+                          Navigator.of(materialButtonContext)
+                              .pushNamed('/second', arguments: homeScreenKey);
+                        },
+                        child: Text("Go to Second Screen",
+                            style: TextStyle(color: Colors.white)),
+                        color: Colors.redAccent,
+                      )),
               SizedBox(
                 height: 24,
               ),
