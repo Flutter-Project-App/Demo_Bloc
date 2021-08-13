@@ -107,6 +107,11 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(widget.title.toString()),
         backgroundColor: widget.color,
+        actions: [
+          IconButton(
+              onPressed: () => Navigator.pushNamed(context, '/settings'),
+              icon: Icon(Icons.settings))
+        ],
       ),
       body: Center(
         child: Column(
@@ -139,7 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
               }
               return CircularProgressIndicator();
             }),
-            Text('You have pushed the button this many times: '),
+            Divider(height: 5,),
             BlocConsumer<CounterCubit, CounterState>(
               listener: (context, state) {
                 if (state.wasIncremented!) {
@@ -233,6 +238,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   tooltip: 'Decrement',
                   child: Icon(Icons.remove),
+                  heroTag: 'decrement',
                 ),
                 FloatingActionButton(
                   onPressed: () {
@@ -240,6 +246,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     context.read<CounterCubit>().increment();
                   },
                   tooltip: 'Increment',
+                  heroTag: 'increment',
                   child: Icon(Icons.add),
                 ),
               ],
