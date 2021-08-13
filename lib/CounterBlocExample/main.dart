@@ -7,34 +7,22 @@ import 'package:demo_bloc/CounterBlocExample/presentation/screens/second_screen.
 import 'package:demo_bloc/CounterBlocExample/presentation/screens/third_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'logic/cubit/counter_cubit.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  HydratedBloc.storage = await HydratedStorage.build(
+      storageDirectory: await getApplicationDocumentsDirectory());
+
   runApp(MyApp(
     appRouter: AppRouter(),
     connectivity: Connectivity(),
   ));
 }
-// Anonymous Route Access
-// class MyApp extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       title: 'Flutter Demo BlocProvider',
-//       theme: ThemeData(
-//           primarySwatch: Colors.blue,
-//           visualDensity: VisualDensity.adaptivePlatformDensity),
-//       home: BlocProvider<CounterCubit>(
-//         create: (context) => CounterCubit(),
-//         child: HomeScreen(
-//           title: 'Flutter Demo Home Page',
-//           color: Colors.blueAccent,
-//         ),
-//       ),
-//     );
-//   }
-// }
 
 // Named Route Access
 class MyApp extends StatelessWidget {
@@ -66,29 +54,6 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
             primarySwatch: Colors.blue,
             visualDensity: VisualDensity.adaptivePlatformDensity),
-        // routes: {
-        //   '/': (context) => BlocProvider.value(
-        //         value: _counterCubit,
-        //         child: HomeScreen(
-        //           title: 'Home Screen',
-        //           color: Colors.blueAccent,
-        //         ),
-        //       ),
-        //   '/second': (context) => BlocProvider.value(
-        //         value: _counterCubit,
-        //         child: SecondScreen(
-        //           title: 'Second Screen',
-        //           color: Colors.redAccent,
-        //         ),
-        //       ),
-        //   '/third': (context) => BlocProvider.value(
-        //         value: _counterCubit,
-        //         child: ThirdScreen(
-        //           title: 'Third Screen',
-        //           color: Colors.greenAccent,
-        //         ),
-        //       )
-        // },
         onGenerateRoute: appRouter.onGenerateRoute,
       ),
     );

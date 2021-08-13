@@ -32,6 +32,8 @@ dependencies:
   flutter_bloc:
   connectivity_plus:
   equatable:
+  hydrated_bloc:
+  path_provider:
 
 dev_dependencies:
   flutter_test:
