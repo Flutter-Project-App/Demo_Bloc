@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:demo_bloc/CounterBlocExample/logic/cubit/internet_cubit.dart';
 import 'package:demo_bloc/CounterBlocExample/logic/cubit/settings_cubit.dart';
+import 'package:demo_bloc/CounterBlocExample/logic/utility/app_bloc_observer.dart';
 import 'package:demo_bloc/CounterBlocExample/presentation/router/app_router.dart';
 import 'package:demo_bloc/CounterBlocExample/presentation/screens/home_screen.dart';
 import 'package:demo_bloc/CounterBlocExample/presentation/screens/second_screen.dart';
@@ -17,6 +18,8 @@ void main() async {
 
   HydratedBloc.storage = await HydratedStorage.build(
       storageDirectory: await getApplicationDocumentsDirectory());
+
+  Bloc.observer = AppBlocObserver();
 
   runApp(MyApp(
     appRouter: AppRouter(),
@@ -47,6 +50,7 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider<SettingsCubit>(
           create: (context) => SettingsCubit(),
+          lazy: false,
         )
       ],
       child: MaterialApp(
