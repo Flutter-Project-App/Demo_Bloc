@@ -3,6 +3,6 @@ class Strings {
   static final appTitle = 'App Name';
 
   // HomeScreen
-  static final homeScreenTitle = 'Home Screen';
+  static final counterScreenTitle = 'Counter Screen';
   static final homeScreenCenterText = 'Welcome to Flutter!';
 }
